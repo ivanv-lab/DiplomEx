@@ -10,7 +10,6 @@ public class PickPoint {
     private Long id;
     private String name;
     private String address;
-    protected PickPoint(){}
 
     public PickPoint(String name, String address) {
         this.name = name;

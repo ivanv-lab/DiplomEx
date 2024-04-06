@@ -15,7 +15,6 @@ public class Product {
     private String name;
     private int number;
     private BigDecimal price;
-    protected Product(){}
 
     public Product(String name, int number, BigDecimal price) {
         this.name = name;

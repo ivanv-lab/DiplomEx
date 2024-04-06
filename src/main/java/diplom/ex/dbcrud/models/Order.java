@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,23 +15,28 @@ public class Order {
     private Long id;
     //Ссылка на PickPoint
     @OneToMany
-    private List<PickPoint> pickPoint;
+    private List<PickPoint> pickPoint=new ArrayList<>();
     private LocalDate date;
     private BigDecimal sum;
     //Ссылка на Client
-    @OneToOne
-    private List<Client> client;
+    @ManyToOne
+    private List<Client> client=new ArrayList<>();
     //Подумать
     @OneToMany
-    private List<OrderItem> item;
+    private List<OrderItem> item=new ArrayList<>();
+    //Пробничек
+    public Order(){}
 
-    public Order(List<PickPoint> pickPoint, LocalDate date, BigDecimal sum, List<Client> client,
-                 List<OrderItem> item) {
-        this.pickPoint = pickPoint;
+    public Order(PickPoint pickPoint, LocalDate date, BigDecimal sum, Client client,
+                 OrderItem item) {
+        //this.pickPoint = pickPoint;
+        this.pickPoint.add(pickPoint);
         this.date = date;
         this.sum = sum;
-        this.client = client;
-        this.item = item;
+        //this.client = client;
+        //this.item = item;
+        this.client.add(client);
+        this.item.add(item);
     }
 
     public String toString(){
@@ -58,5 +64,31 @@ public class Order {
 
     public List<OrderItem> getItem() {
         return item;
+    }
+
+    //Пробничек
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setPickPoint(PickPoint pickPoint) {
+        this.pickPoint.add(pickPoint);
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setSum(BigDecimal sum) {
+        this.sum = sum;
+    }
+
+    public void setClient(Client client) {
+        this.client.add(client);
+    }
+
+    public void setItem(OrderItem item) {
+        this.item.add(item);
     }
 }

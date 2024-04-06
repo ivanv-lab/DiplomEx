@@ -11,7 +11,6 @@ public class Client {
     private String fio;
     private String email;
     private String phone;
-    protected Client(){}
 
     public Client(String fio, String email, String phone) {
         this.fio = fio;

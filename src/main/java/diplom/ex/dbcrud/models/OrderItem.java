@@ -3,6 +3,7 @@ package diplom.ex.dbcrud.models;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,21 +12,20 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    private List<Order> order;
-    @ManyToOne
-    private List<Product> product;
-    //Ссылка на product_id
-    /**
-     * Или лист Product
-     * и ссылка от Order
-     */
     private int number;
     private BigDecimal price;
+    @ManyToOne
+    private List<Order> order=new ArrayList<>();
+    @ManyToOne
+    private List<Product> product=new ArrayList<>();
+    //Пробничек
+    public OrderItem(){}
 
-    public OrderItem(List<Order> order, List<Product> product, int number, BigDecimal price) {
-        this.order = order;
-        this.product = product;
+    public OrderItem(Order order,Product product, int number, BigDecimal price) {
+        //this.order = order;
+        //this.product = product;
+        this.order.add(order);
+        this.product.add(product);
         this.number = number;
         this.price = price;
     }
@@ -55,5 +55,26 @@ public class OrderItem {
 
     public BigDecimal getPrice() {
         return price;
+    }
+    //Пробничек
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public void setOrder(Order order) {
+        this.order.add(order);
+    }
+
+    public void setProduct(Product product) {
+        this.product.add(product);
     }
 }
