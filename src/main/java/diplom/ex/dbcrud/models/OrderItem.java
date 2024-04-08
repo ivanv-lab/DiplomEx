@@ -15,10 +15,11 @@ public class OrderItem {
     private int number;
     private BigDecimal price;
     @ManyToOne
+    @JoinColumn(name = "order_id")
     private List<Order> order=new ArrayList<>();
     @ManyToOne
+    @JoinColumn(name = "product_id")
     private List<Product> product=new ArrayList<>();
-    //Пробничек
     public OrderItem(){}
 
     public OrderItem(Order order,Product product, int number, BigDecimal price) {

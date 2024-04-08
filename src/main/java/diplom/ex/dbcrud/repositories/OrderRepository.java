@@ -1,7 +1,6 @@
 package diplom.ex.dbcrud.repositories;
 
 import diplom.ex.dbcrud.models.Order;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 
 import java.time.LocalDate;

@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "order")
@@ -14,17 +14,18 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     //Ссылка на PickPoint
-    @OneToMany
+@ManyToOne
+@JoinColumn(name = "pickPointId")
     private List<PickPoint> pickPoint=new ArrayList<>();
     private LocalDate date;
     private BigDecimal sum;
     //Ссылка на Client
     @ManyToOne
+    @JoinColumn(name = "client_id")
     private List<Client> client=new ArrayList<>();
-    //Подумать
-    @OneToMany
+    @ManyToOne
+    @JoinColumn(name = "orderListId")
     private List<OrderItem> item=new ArrayList<>();
-    //Пробничек
     public Order(){}
 
     public Order(PickPoint pickPoint, LocalDate date, BigDecimal sum, Client client,
@@ -66,6 +67,9 @@ public class Order {
         return item;
     }
 
+    public Long getId() {
+        return id;
+    }
     //Пробничек
 
     public void setId(Long id) {

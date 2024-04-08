@@ -1,9 +1,9 @@
 package diplom.ex.dbcrud.models;
 
 import jakarta.persistence.*;
-import jdk.jfr.Enabled;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,7 +15,9 @@ public class Product {
     private String name;
     private int number;
     private BigDecimal price;
-
+    @OneToMany(mappedBy = "product")
+private List<OrderItem> orderItemList=new ArrayList<>();
+    public Product(){}
     public Product(String name, int number, BigDecimal price) {
         this.name = name;
         this.number = number;

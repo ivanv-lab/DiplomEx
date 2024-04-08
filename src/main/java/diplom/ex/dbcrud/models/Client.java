@@ -2,6 +2,9 @@ package diplom.ex.dbcrud.models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "client")
 public class Client {
@@ -11,7 +14,9 @@ public class Client {
     private String fio;
     private String email;
     private String phone;
-
+@OneToMany(mappedBy = "client")
+    private List<Order> order=new ArrayList<>();
+    public Client(){}
     public Client(String fio, String email, String phone) {
         this.fio = fio;
         this.email = email;

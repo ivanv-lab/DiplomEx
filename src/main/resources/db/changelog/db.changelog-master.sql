@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset your.name:1
-Create Table PickPoint(
+Create Table "pick_point"(
 id serial primary key NOT NULL,
 name character varying(255),
 address character varying(255)
@@ -29,10 +29,10 @@ id serial primary key NOT NULL,
 location integer,
 date date,
 sum decimal,
-user_id integer,
-Foreign key(location) references PickPoint(id)
+client_id integer,
+Foreign key(location) references pick_point(id)
 on delete cascade on update cascade,
-Foreign key(user_id) references "user"(id)
+Foreign key(client_id) references "client"(id)
 on delete cascade on update cascade
 );
 
