@@ -13,15 +13,15 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = PickPoint.class,fetch = FetchType.EAGER)
     @JoinColumn(name = "pickPoint_id")
     private PickPoint pickPoint;
     private LocalDate date;
     private BigDecimal sum;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Client.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Client client;
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
     private List<OrderItem> item=new ArrayList<>();
     public Order(){}
 

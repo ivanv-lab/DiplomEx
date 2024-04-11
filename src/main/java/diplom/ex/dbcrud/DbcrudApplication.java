@@ -75,8 +75,8 @@ public class DbcrudApplication {
 //			PickPoint pickPoint1=pickPointRepository.findByAddress("Suzdalski prospect, 3");
 //			log.info(pickPoint1.toString());
 //			log.info("");
-//			//-----------------------------------------------------------------------------------------------
-//			//Product
+			//-----------------------------------------------------------------------------------------------
+			//Product
 //			productRepository.save(new Product("Intel Core I5-12400",23, new BigDecimal(12300)));
 //			productRepository.save(new Product("Intel Core I7-12700",12,new BigDecimal(24560)));
 //
@@ -105,27 +105,17 @@ public class DbcrudApplication {
 //			orderRepository.save(new Order());
 //			log.info("Order saved");
 //			orderItemRepository.save(new OrderItem(orderRepository.findById(1), productRepository.findById(1), 2, new BigDecimal(26600)));
-//			orderItemRepository.save(new OrderItem());
 //			log.info("OrderList saved");
 
-			OrderItem orderItem=orderItemRepository.findById(1);
-			orderItem.setProduct(productRepository.findById(1));
-			orderItem.setOrder(orderRepository.findById(1));
-			orderItem.setNumber(2);
-			orderItem.setPrice(new BigDecimal(13300));
-			log.info("orderItem setted");
-			orderItemRepository.save(orderItem);
-			log.info("orderItem saved");
-
-			Order order=orderRepository.findById(1);
-			order.setClient(clientRepository.findById(1));
-			order.setSum(new BigDecimal(26600));
-			order.setDate(LocalDate.now());
-			order.setPickPoint(pickPointRepository.findById(1));
-			order.setItem(orderItemRepository.findById(1));
-			log.info("Order setted");
-			orderRepository.save(order);
-			log.info("Order saved");
+//			Order order=orderRepository.findById(1);
+//			order.setClient(clientRepository.findById(1));
+//			order.setSum(new BigDecimal(26600));
+//			order.setDate(LocalDate.now());
+//			order.setPickPoint(pickPointRepository.findById(1));
+//			order.setItem(orderItemRepository.findById(1));
+//			log.info("Order setted");
+//			orderRepository.save(order);
+//			log.info("Order saved");
 		});
 	}
 }
