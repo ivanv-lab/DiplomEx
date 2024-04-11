@@ -14,23 +14,20 @@ public class OrderItem {
     private Long id;
     private int number;
     private BigDecimal price;
-    @ManyToOne
+    @ManyToOne(targetEntity = Order.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id")
-    private List<Order> order=new ArrayList<>();
-    @ManyToOne
+    private Order order;
+    @ManyToOne(targetEntity = Product.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
-    private List<Product> product=new ArrayList<>();
+    private Product product;
     public OrderItem(){}
 
     public OrderItem(Order order,Product product, int number, BigDecimal price) {
-        //this.order = order;
-        //this.product = product;
-        this.order.add(order);
-        this.product.add(product);
+        this.order=order;
+        this.product=product;
         this.number = number;
         this.price = price;
     }
-
     public String toString(){
         return String.format(
                 "OrderItem[id="+id+", order="+order+", product="+
@@ -42,40 +39,39 @@ public class OrderItem {
         return id;
     }
 
-    public List<Order> getOrder() {
-        return order;
-    }
-
-    public List<Product> getProduct() {
-        return product;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public int getNumber() {
         return number;
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-    //Пробничек
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
     }
 
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
+    public Order getOrder() {
+        return order;
+    }
+
     public void setOrder(Order order) {
-        this.order.add(order);
+        this.order = order;
+    }
+
+    public Product getProduct() {
+        return product;
     }
 
     public void setProduct(Product product) {
-        this.product.add(product);
+        this.product = product;
     }
 }

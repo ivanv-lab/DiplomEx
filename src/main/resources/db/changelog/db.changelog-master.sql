@@ -26,11 +26,11 @@ price decimal
 --changeset your.name:4
 create table "order"(
 id serial primary key NOT NULL,
-location integer,
+pick_point_id integer,
 date date,
 sum decimal,
 client_id integer,
-Foreign key(location) references pick_point(id)
+Foreign key(pick_point_id) references pick_point(id)
 on delete cascade on update cascade,
 Foreign key(client_id) references "client"(id)
 on delete cascade on update cascade

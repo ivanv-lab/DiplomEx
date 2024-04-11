@@ -100,29 +100,32 @@ public class DbcrudApplication {
 //			});
 //			log.info("");
 			//--------------------------------------------------------------------------------------------------
-			Client client=clientRepository.findById(1);
-			Product product=productRepository.findById(1);
-			PickPoint pickPoint=pickPointRepository.findById(1);
-			log.info(client.toString());
-			log.info(product.toString());
-			log.info(pickPoint.toString());
-			Order order=new Order();
-			OrderItem orderItem=new OrderItem();
-//			orderRepository.save(order);
-//			orderItemRepository.save(orderItem);
-			orderItem.setOrder(order);
+
+
+//			orderRepository.save(new Order());
+//			log.info("Order saved");
+//			orderItemRepository.save(new OrderItem(orderRepository.findById(1), productRepository.findById(1), 2, new BigDecimal(26600)));
+//			orderItemRepository.save(new OrderItem());
+//			log.info("OrderList saved");
+
+			OrderItem orderItem=orderItemRepository.findById(1);
+			orderItem.setProduct(productRepository.findById(1));
+			orderItem.setOrder(orderRepository.findById(1));
 			orderItem.setNumber(2);
-			orderItem.setProduct(product);
-			orderItem.setPrice(product.getPrice());
-			order.setDate(LocalDate.now());
-			order.setItem(orderItem);
-			order.setSum(new BigDecimal(26600));
-			order.setClient(client);
-			order.setPickPoint(pickPoint);
-			orderRepository.save(order);
+			orderItem.setPrice(new BigDecimal(13300));
+			log.info("orderItem setted");
 			orderItemRepository.save(orderItem);
-			log.info(orderItem.toString());
-			log.info(order.toString());
+			log.info("orderItem saved");
+
+			Order order=orderRepository.findById(1);
+			order.setClient(clientRepository.findById(1));
+			order.setSum(new BigDecimal(26600));
+			order.setDate(LocalDate.now());
+			order.setPickPoint(pickPointRepository.findById(1));
+			order.setItem(orderItemRepository.findById(1));
+			log.info("Order setted");
+			orderRepository.save(order);
+			log.info("Order saved");
 		});
 	}
 }

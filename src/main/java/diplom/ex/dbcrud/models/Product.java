@@ -16,7 +16,7 @@ public class Product {
     private int number;
     private BigDecimal price;
     @OneToMany(mappedBy = "product")
-private List<OrderItem> orderItemList=new ArrayList<>();
+    private List<OrderItem> orderItemList=new ArrayList<>();
     public Product(){}
     public Product(String name, int number, BigDecimal price) {
         this.name = name;
@@ -45,5 +45,29 @@ private List<OrderItem> orderItemList=new ArrayList<>();
 
     public BigDecimal getPrice() {
         return price;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
+    }
+
+    public void setOrderItemList(List<OrderItem> orderItemList) {
+        this.orderItemList = orderItemList;
     }
 }

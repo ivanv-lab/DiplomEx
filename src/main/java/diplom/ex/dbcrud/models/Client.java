@@ -14,8 +14,7 @@ public class Client {
     private String fio;
     private String email;
     private String phone;
-@OneToMany(mappedBy = "client")
-    private List<Order> order=new ArrayList<>();
+
     public Client(){}
     public Client(String fio, String email, String phone) {
         this.fio = fio;
@@ -28,6 +27,22 @@ public class Client {
                 "Client[id="+id+", FIO="+fio+", email="+email+
                         ", phone="+phone+"]"
         );
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setFio(String fio) {
+        this.fio = fio;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Long getId() {
@@ -45,4 +60,5 @@ public class Client {
     public String getPhone() {
         return phone;
     }
+
 }

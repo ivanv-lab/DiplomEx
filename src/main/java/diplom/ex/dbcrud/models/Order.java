@@ -8,35 +8,29 @@ import java.util.List;
 import java.util.ArrayList;
 
 @Entity
-@Table(name = "order")
+@Table(name = "\""+"order"+"\"")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //Ссылка на PickPoint
-@ManyToOne
-@JoinColumn(name = "pickPointId")
-    private List<PickPoint> pickPoint=new ArrayList<>();
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "pickPoint_id")
+    private PickPoint pickPoint;
     private LocalDate date;
     private BigDecimal sum;
-    //Ссылка на Client
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
-    private List<Client> client=new ArrayList<>();
-    @ManyToOne
-    @JoinColumn(name = "orderListId")
+    private Client client;
+    @OneToMany(mappedBy = "order")
     private List<OrderItem> item=new ArrayList<>();
     public Order(){}
 
     public Order(PickPoint pickPoint, LocalDate date, BigDecimal sum, Client client,
                  OrderItem item) {
-        //this.pickPoint = pickPoint;
-        this.pickPoint.add(pickPoint);
+        this.pickPoint=pickPoint;
         this.date = date;
         this.sum = sum;
-        //this.client = client;
-        //this.item = item;
-        this.client.add(client);
+        this.client=client;
         this.item.add(item);
     }
 
@@ -47,7 +41,7 @@ public class Order {
         );
     }
 
-    public List<PickPoint> getPickPoint() {
+    public PickPoint getPickPoint() {
         return pickPoint;
     }
 
@@ -59,7 +53,7 @@ public class Order {
         return sum;
     }
 
-    public List<Client> getClient() {
+    public Client getClient() {
         return client;
     }
 
@@ -70,14 +64,13 @@ public class Order {
     public Long getId() {
         return id;
     }
-    //Пробничек
 
     public void setId(Long id) {
         this.id = id;
     }
 
     public void setPickPoint(PickPoint pickPoint) {
-        this.pickPoint.add(pickPoint);
+        this.pickPoint=pickPoint;
     }
 
     public void setDate(LocalDate date) {
@@ -89,7 +82,7 @@ public class Order {
     }
 
     public void setClient(Client client) {
-        this.client.add(client);
+        this.client=client;
     }
 
     public void setItem(OrderItem item) {

@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface OrderItemRepository extends CrudRepository<OrderItem, Long> {
     List<OrderItem> findByOrderId(long orderId);
-    OrderItem findById(long id);
     List<OrderItem> findByProductId(long productId);
+    OrderItem findById(long id);
 }

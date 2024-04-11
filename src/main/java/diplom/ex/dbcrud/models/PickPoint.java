@@ -13,7 +13,7 @@ public class PickPoint {
     private Long id;
     private String name;
     private String address;
-@OneToMany(mappedBy = "pickPoint")
+    @OneToMany(mappedBy = "pickPoint")
     private List<Order> order=new ArrayList<>();
     public PickPoint(){}
     public PickPoint(String name, String address) {
@@ -36,5 +36,25 @@ public class PickPoint {
 
     public String getAddress() {
         return address;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public List<Order> getOrder() {
+        return order;
+    }
+
+    public void setOrder(List<Order> order) {
+        this.order = order;
     }
 }
