@@ -102,20 +102,20 @@ public class DbcrudApplication {
 			//--------------------------------------------------------------------------------------------------
 
 
-			orderRepository.save(new Order());
-			log.info("Order saved");
-			orderItemRepository.save(new OrderItem(orderRepository.findById(2), productRepository.findById(2), 1, new BigDecimal(24560)));
-			log.info("OrderList saved");
-
-			Order order=orderRepository.findById(2);
-			order.setClient(clientRepository.findById(2));
-			order.setSum(new BigDecimal(24560));
-			order.setDate(LocalDate.now());
-			order.setPickPoint(pickPointRepository.findById(2));
-			order.setItem(orderItemRepository.findById(2));
-			log.info("Order setted");
-			orderRepository.save(order);
-			log.info("Order saved");
+//			orderRepository.save(new Order());
+//			log.info("Order saved");
+//			orderItemRepository.save(new OrderItem(orderRepository.findById(2), productRepository.findById(2), 1, new BigDecimal(24560)));
+//			log.info("OrderList saved");
+//
+//			Order order=orderRepository.findById(2);
+//			order.setClient(clientRepository.findById(2));
+//			order.setSum(new BigDecimal(24560));
+//			order.setDate(LocalDate.now());
+//			order.setPickPoint(pickPointRepository.findById(2));
+//			order.setItem(orderItemRepository.findById(2));
+//			log.info("Order setted");
+//			orderRepository.save(order);
+//			log.info("Order saved");
 		});
 	}
 }
