@@ -15,6 +15,7 @@ public class Product {
     private String name;
     private int number;
     private BigDecimal price;
+    @Transient
     @OneToMany(mappedBy = "product")
     private List<OrderItem> orderItemList=new ArrayList<>();
     public Product(){}

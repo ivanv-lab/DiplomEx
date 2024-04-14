@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collections;
 import java.util.List;
@@ -41,17 +42,24 @@ public class ClientController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/clients/{id}")
-    public ResponseEntity<?> update(@PathVariable(name="id") int id,@RequestBody Client client){
-        final Client updated=clientRepository.save(client);
-        return updated!=null
-                ? new ResponseEntity<>(HttpStatus.OK)
+    @PutMapping(value = "/clients/{id}")
+    public ResponseEntity<Client> update(@PathVariable(name="id") int id, @RequestBody Client client){
+        final Client updatebleClient=clientRepository.findById(id);
+        updatebleClient.setFio(client.getFio());
+        updatebleClient.setEmail(client.getEmail());
+        updatebleClient.setPhone(client.getPhone());
+        clientRepository.save(updatebleClient);
+        return updatebleClient!=null
+                ? new ResponseEntity<>(updatebleClient,HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    @GetMapping(value = "/clients/{id}")
-    public ResponseEntity<?> delete(@PathVariable(name="id")int id){
-        final boolean deleted=clientRepository.deleteById(Long.valueOf(id));
-
+    @DeleteMapping(value = "/clients/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable(name="id") long id){
+        final Client deletebleClient=clientRepository.findById(id);
+        clientRepository.delete(deletebleClient);
+        return deletebleClient!=null
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
