@@ -1,5 +1,9 @@
 package diplom.ex.dbcrud.controllers;
 
+import diplom.ex.dbcrud.dto.orderitem.OrderItemCreateDto;
+import diplom.ex.dbcrud.dto.orderitem.OrderItemDto;
+import diplom.ex.dbcrud.dto.orderitem.OrderItemUpdateDto;
+import diplom.ex.dbcrud.mapper.OrderItemMapper;
 import diplom.ex.dbcrud.models.OrderItem;
 import diplom.ex.dbcrud.repositories.OrderItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,52 +14,99 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/orderitems")
 public class OrderItemController {
-    private OrderItemRepository orderItemRepository;
     @Autowired
-    public OrderItemController(OrderItemRepository orderItemRepository){this.orderItemRepository=orderItemRepository;}
+    private OrderItemRepository itemRepository;
+    @Autowired
+    private OrderItemMapper itemMapper;
 
-    @PostMapping(value = "/orderitems")
-    public ResponseEntity<?> create(@RequestBody OrderItem orderItem){
-        orderItemRepository.save(orderItem);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public OrderItemDto create(@RequestBody OrderItemCreateDto itemData){
+        var item=itemMapper.map(itemData);
+        itemRepository.save(item);
+        var itemDto=itemMapper.map(item);
+        return itemDto;
     }
 
-    @GetMapping(value = "/orderitems")
-    public ResponseEntity<List<OrderItem>> read(){
-        final List<OrderItem> orderItems= (List<OrderItem>) orderItemRepository.findAll();
-        return orderItems!=null && !orderItems.isEmpty()
-                ? new ResponseEntity<>(orderItems,HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @GetMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public OrderItemDto getById(@PathVariable Long id){
+        var item=itemRepository.findById(id).get();
+        var itemDto=itemMapper.map(item);
+        return itemDto;
     }
 
-    @GetMapping(value = "/orderitems/{id}")
-    public ResponseEntity<OrderItem> read(@PathVariable(name="id") int id){
-        final OrderItem orderItem=orderItemRepository.findById(id);
-        return orderItem!=null
-                ? new ResponseEntity<>(orderItem, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public OrderItemDto update(@RequestBody OrderItemUpdateDto itemData, @PathVariable Long id){
+        var item=itemRepository.findById(id).get();
+        itemMapper.update(itemData,item);
+        itemRepository.save(item);
+        var itemDto=itemMapper.map(item);
+        return itemDto;
     }
 
-    @PutMapping(value = "/orderitems/{id}")
-    public ResponseEntity<OrderItem> update(@PathVariable(name="id") int id, @RequestBody OrderItem orderItem){
-        final OrderItem updatebleOrderItem=orderItemRepository.findById(id);
-        updatebleOrderItem.setOrder(orderItem.getOrder());
-        updatebleOrderItem.setProduct(orderItem.getProduct());
-        updatebleOrderItem.setNumber(orderItem.getNumber());
-        updatebleOrderItem.setPrice(orderItem.getPrice());
-        orderItemRepository.save(updatebleOrderItem);
-        return updatebleOrderItem!=null
-                ? new ResponseEntity<>(updatebleOrderItem,HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<OrderItemDto> getAll(){
+        var items=itemRepository.findAll();
+        var itemDto=itemMapper.all((List)items);
+        return itemDto;
     }
 
-    @DeleteMapping(value = "/orderitems/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable(name="id") long id){
-        final OrderItem deletebleOrderItem=orderItemRepository.findById(id);
-        orderItemRepository.delete(deletebleOrderItem);
-        return deletebleOrderItem!=null
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public String delete(@PathVariable Long id){
+        itemRepository.deleteById(id);
+        return "OrderItem "+id+" success deleted";
     }
+//    private OrderItemRepository orderItemRepository;
+//    @Autowired
+//    public OrderItemController(OrderItemRepository orderItemRepository){this.orderItemRepository=orderItemRepository;}
+//
+//    @PostMapping(value = "/orderitems")
+//    public ResponseEntity<?> create(@RequestBody OrderItem orderItem){
+//        orderItemRepository.save(orderItem);
+//        return new ResponseEntity<>(HttpStatus.CREATED);
+//    }
+//
+//    @GetMapping(value = "/orderitems")
+//    public ResponseEntity<List<OrderItem>> read(){
+//        final List<OrderItem> orderItems= (List<OrderItem>) orderItemRepository.findAll();
+//        return orderItems!=null && !orderItems.isEmpty()
+//                ? new ResponseEntity<>(orderItems,HttpStatus.OK)
+//                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//    }
+//
+//    @GetMapping(value = "/orderitems/{id}")
+//    public ResponseEntity<OrderItem> read(@PathVariable(name="id") int id){
+//        final OrderItem orderItem=orderItemRepository.findById(id);
+//        return orderItem!=null
+//                ? new ResponseEntity<>(orderItem, HttpStatus.OK)
+//                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//    }
+//
+//    @PutMapping(value = "/orderitems/{id}")
+//    public ResponseEntity<OrderItem> update(@PathVariable(name="id") int id, @RequestBody OrderItem orderItem){
+//        final OrderItem updatebleOrderItem=orderItemRepository.findById(id);
+//        updatebleOrderItem.setOrder(orderItem.getOrder());
+//        updatebleOrderItem.setProduct(orderItem.getProduct());
+//        updatebleOrderItem.setNumber(orderItem.getNumber());
+//        updatebleOrderItem.setPrice(orderItem.getPrice());
+//        orderItemRepository.save(updatebleOrderItem);
+//        return updatebleOrderItem!=null
+//                ? new ResponseEntity<>(updatebleOrderItem,HttpStatus.OK)
+//                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+//    }
+//
+//    @DeleteMapping(value = "/orderitems/delete/{id}")
+//    public ResponseEntity<?> delete(@PathVariable(name="id") long id){
+//        final OrderItem deletebleOrderItem=orderItemRepository.findById(id);
+//        orderItemRepository.delete(deletebleOrderItem);
+//        return deletebleOrderItem!=null
+//                ? new ResponseEntity<>(HttpStatus.OK)
+//                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//    }
 }
