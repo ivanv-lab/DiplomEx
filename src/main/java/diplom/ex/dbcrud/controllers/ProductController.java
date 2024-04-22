@@ -31,7 +31,7 @@ public class ProductController {
     @GetMapping("/search/{name}")
     @ResponseStatus(HttpStatus.OK)
     public List<ProductDto> getByName(@PathVariable String name){
-        var products=productRepository.findByNameStartingWithIgnoreCase(name);
+        var products=productRepository.findByNameContainingIgnoreCase(name);
         var productsDto =productMapper.all(products);
         return productsDto;
     }

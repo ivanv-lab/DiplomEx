@@ -22,4 +22,5 @@ public class OrderDto {
     private LocalDate date;
     private BigDecimal sum;
     private ClientDto client;
+    private List<OrderItemDto> items;
 }

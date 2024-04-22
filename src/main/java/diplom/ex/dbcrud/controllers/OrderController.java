@@ -37,7 +37,7 @@ public class OrderController {
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public OrderDto getById(@PathVariable Long id){
-        var order=orderRepository.findById(id).get();
+        var order=orderRepository.findOrderAndOrderItemByOrderId(id);
         var orderDto=orderMapper.map(order);
         return orderDto;
     }
