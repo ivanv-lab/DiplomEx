@@ -28,6 +28,14 @@ public class ProductController {
         return productDto;
     }
 
+    @GetMapping("/search/{name}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProductDto> getByName(@PathVariable String name){
+        var products=productRepository.findByName(name);
+        var productsDto=productMapper.all(products);
+        return productsDto;
+    }
+
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public ProductDto getById(@PathVariable Long id){
