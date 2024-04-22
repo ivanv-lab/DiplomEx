@@ -1,6 +1,7 @@
 package diplom.ex.dbcrud.repositories;
 
 import diplom.ex.dbcrud.models.Order;
+import diplom.ex.dbcrud.models.OrderItem;
 import jakarta.persistence.Entity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

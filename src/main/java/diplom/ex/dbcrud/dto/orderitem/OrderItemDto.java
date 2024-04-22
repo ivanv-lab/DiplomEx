@@ -1,5 +1,6 @@
 package diplom.ex.dbcrud.dto.orderitem;
 
+import diplom.ex.dbcrud.dto.order.OrderDto;
 import diplom.ex.dbcrud.dto.product.ProductDto;
 import diplom.ex.dbcrud.models.Order;
 import diplom.ex.dbcrud.models.Product;
