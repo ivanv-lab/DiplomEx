@@ -32,7 +32,7 @@ public class ProductController {
     @ResponseStatus(HttpStatus.OK)
     public List<ProductDto> getByName(@PathVariable String name){
         var products=productRepository.findByNameStartingWithIgnoreCase(name);
-        var productsDto=productMapper.all(products);
+        var productsDto =productMapper.all(products);
         return productsDto;
     }
 

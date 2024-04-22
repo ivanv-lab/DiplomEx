@@ -38,7 +38,7 @@ public class PickPointController {
     @ResponseStatus(HttpStatus.OK)
     public List<PickPointDto>  getByAddress(@PathVariable String address) {
         var points = pointRepository.findByAddressStartingWithIgnoreCase(address);
-        var pointsDto=pointMapper.all((List)points);
+        var pointsDto =pointMapper.all((List)points);
         return pointsDto;
     }
 
