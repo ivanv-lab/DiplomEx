@@ -7,6 +7,6 @@ import java.math.BigDecimal;
 
 public interface ProductRepository extends CrudRepository<Product, Long> {
     List<Product> findByPrice(BigDecimal price);
-    List<Product>findByName(String name);
+    List<Product>findByNameStartingWithIgnoreCase(String name);
     Product findById(long id);
 }
