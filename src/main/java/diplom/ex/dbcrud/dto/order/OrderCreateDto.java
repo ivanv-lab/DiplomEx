@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class OrderCreateDto {
-    private PickPoint pickPoint;
+    private PickPoint  pickPoint;
     private LocalDate date;
     private BigDecimal sum;
     private Client client;
