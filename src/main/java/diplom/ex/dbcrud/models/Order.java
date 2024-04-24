@@ -1,6 +1,9 @@
 package diplom.ex.dbcrud.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -8,6 +11,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 @Entity
+@Data
+@Getter
+@Setter
 @Table(name = "\""+"order"+"\"")
 public class Order {
     @Id
@@ -41,51 +47,4 @@ public class Order {
         );
     }
 
-    public PickPoint getPickPoint() {
-        return pickPoint;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public BigDecimal getSum() {
-        return sum;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public List<OrderItem> getItem() {
-        return item;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setPickPoint(PickPoint pickPoint) {
-        this.pickPoint=pickPoint;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public void setSum(BigDecimal sum) {
-        this.sum = sum;
-    }
-
-    public void setClient(Client client) {
-        this.client=client;
-    }
-
-    public void setItem(OrderItem item) {
-        this.item.add(item);
-    }
 }

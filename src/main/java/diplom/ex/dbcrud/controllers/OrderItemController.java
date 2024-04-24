@@ -30,13 +30,13 @@ public class OrderItemController {
         return itemDto;
     }
 
-    @GetMapping("/orderid/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public List<OrderItemDto> getByOrderId(@PathVariable Long id){
-        var items=itemRepository.findByOrderId(id);
-        var itemDto=itemMapper.all((List)items);
-        return itemDto;
-    }
+//    @GetMapping("/orderid/{id}")
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<OrderItemDto> getByOrderId(@PathVariable Long id){
+//        var items=itemRepository.findByOrderId(id);
+//        var itemDto=itemMapper.all((List)items);
+//        return itemDto;
+//    }
 
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)

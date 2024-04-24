@@ -4,6 +4,7 @@ import diplom.ex.dbcrud.dto.client.ClientDto;
 import diplom.ex.dbcrud.dto.orderitem.OrderItemDto;
 import diplom.ex.dbcrud.dto.pickpoint.PickPointDto;
 import diplom.ex.dbcrud.models.Client;
+import diplom.ex.dbcrud.models.OrderItem;
 import diplom.ex.dbcrud.models.PickPoint;
 import lombok.Data;
 import lombok.Getter;
@@ -22,5 +23,5 @@ public class OrderDto {
     private LocalDate date;
     private BigDecimal sum;
     private ClientDto client;
-    private List<OrderItemDto> items;
+    private List<OrderItemDto> item;
 }
