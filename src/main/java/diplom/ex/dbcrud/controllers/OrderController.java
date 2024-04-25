@@ -10,6 +10,8 @@ import diplom.ex.dbcrud.mapper.OrderMapper;
 import diplom.ex.dbcrud.models.Order;
 import diplom.ex.dbcrud.models.PickPoint;
 import diplom.ex.dbcrud.repositories.OrderRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name="Order Controller", description = "CRUD Order Controller")
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
@@ -25,6 +28,10 @@ public class OrderController {
     @Autowired
     private OrderMapper orderMapper;
 
+    @Operation(
+            summary = "Создание заказа",
+            description = "Позволяет создать новый заказ"
+    )
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public OrderDto create(@RequestBody OrderCreateDto orderData){
@@ -34,6 +41,10 @@ public class OrderController {
         return orderDto;
     }
 
+    @Operation(
+            summary = "Получение конкретного заказа",
+            description = "Позволяет вывести нужный заказ"
+    )
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public OrderDto getById(@PathVariable Long id){
@@ -42,6 +53,10 @@ public class OrderController {
         return orderDto;
     }
 
+    @Operation(
+            summary = "Изменение заказа",
+            description = "Позволяет изменить детали заказа (место выдачи, сумму заказа)"
+    )
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public OrderDto update(@RequestBody OrderUpdateDto orderData, @PathVariable Long id){
@@ -52,6 +67,10 @@ public class OrderController {
         return orderDto;
     }
 
+    @Operation(
+            summary = "Получение всех заказов",
+            description = "Позволяет вывести все заказы"
+    )
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<OrderDto> getAll(){
@@ -60,6 +79,10 @@ public class OrderController {
         return orderDto;
     }
 
+    @Operation(
+            summary = "Удаление заказа заказа",
+            description = "Позволяет удалить заказ в случае отмены"
+    )
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public String delete(@PathVariable Long id){

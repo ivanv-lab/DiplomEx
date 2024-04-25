@@ -5,12 +5,15 @@ import diplom.ex.dbcrud.dto.product.ProductDto;
 import diplom.ex.dbcrud.dto.product.ProductUpdateDto;
 import diplom.ex.dbcrud.mapper.ProductMapper;
 import diplom.ex.dbcrud.repositories.ProductRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name="Product Controller", description = "CRUD Product Controller")
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -19,6 +22,10 @@ public class ProductController {
     @Autowired
     private ProductMapper productMapper;
 
+    @Operation(
+            summary = "Создание нового товара",
+            description = "Позволяет создать новый товар"
+    )
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ProductDto create(@RequestBody ProductCreateDto productData){
@@ -28,6 +35,10 @@ public class ProductController {
         return productDto;
     }
 
+    @Operation(
+            summary = "Поиск товара по наименованию",
+            description = "Позволяет найти нужный товар по наименованию"
+    )
     @GetMapping("/search/{name}")
     @ResponseStatus(HttpStatus.OK)
     public List<ProductDto> getByName(@PathVariable String name){
@@ -36,6 +47,10 @@ public class ProductController {
         return productsDto;
     }
 
+    @Operation(
+            summary = "Выбор конкретного товара",
+            description = "Позволяет выбрать нужный товар"
+    )
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public ProductDto getById(@PathVariable Long id){
@@ -44,6 +59,10 @@ public class ProductController {
         return productDto;
     }
 
+    @Operation(
+            summary = "Изменение конкретного товара",
+            description = "Позволяет изменить данные товара (наименование, кол-во, цену)"
+    )
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public ProductDto update(@RequestBody ProductUpdateDto productData, @PathVariable Long id){
@@ -54,6 +73,10 @@ public class ProductController {
         return productDto;
     }
 
+    @Operation(
+            summary = "Вывод всех товаров",
+            description = "Позволяет вывести все товары в каталог"
+    )
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ProductDto> getAll(){
@@ -62,6 +85,10 @@ public class ProductController {
         return productDto;
     }
 
+    @Operation(
+            summary = "Удаление конкретного товара",
+            description = "Позволяет удалить нужный товар в случае прекращения торговли им"
+    )
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public String delete(@PathVariable Long id){
