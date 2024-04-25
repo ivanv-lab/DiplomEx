@@ -15,12 +15,12 @@ import java.time.LocalDate;
 @Data
 @Getter
 @Setter
-@Schema(description = "")
+@Schema(description = "Сущность изменения заказа")
 public class OrderUpdateDto {
-    @Schema(description = "")
+    @Schema(description = "Пункт выдачи")
     private PickPoint pickPoint;
     //private LocalDate date;
-    @Schema(description = "")
+    @Schema(description = "Сумма")
     private BigDecimal sum;
 //    @Schema(description = "")
 //    private Client client;
