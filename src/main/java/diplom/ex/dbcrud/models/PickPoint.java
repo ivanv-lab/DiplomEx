@@ -1,11 +1,17 @@
 package diplom.ex.dbcrud.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
+@Getter
+@Setter
 @Table(name="pick_point")
 public class PickPoint {
     @Id
@@ -24,37 +30,5 @@ public class PickPoint {
         return String.format(
                 "PickPoint[id="+id+", name="+name+", address="+address+"]"
         );
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public List<Order> getOrder() {
-        return order;
-    }
-
-    public void setOrder(List<Order> order) {
-        this.order = order;
     }
 }

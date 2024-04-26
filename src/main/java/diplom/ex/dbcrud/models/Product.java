@@ -1,12 +1,18 @@
 package diplom.ex.dbcrud.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
+@Getter
+@Setter
 @Table(name = "product")
 public class Product {
     @Id
@@ -30,45 +36,5 @@ public class Product {
                 "Product[id="+id+", name="+name+", number="+number+
                         ", price="+price+"]"
         );
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public List<OrderItem> getOrderItemList() {
-        return orderItemList;
-    }
-
-    public void setOrderItemList(List<OrderItem> orderItemList) {
-        this.orderItemList = orderItemList;
     }
 }

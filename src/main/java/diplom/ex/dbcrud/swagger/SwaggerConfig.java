@@ -10,8 +10,7 @@ import io.swagger.v3.oas.annotations.info.Info;
                 description = "Internet Shop", version = "1.0.0",
                 contact = @Contact(
                         name="Vozisov I.A.",
-                        email = "ivanvozisov33@yandex.ru",
-                        url = "https://localhost:8080/"
+                        email = "ivanvozisov33@yandex.ru"
                 )
         )
 )

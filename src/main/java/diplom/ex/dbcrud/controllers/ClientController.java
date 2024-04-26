@@ -32,7 +32,7 @@ public class ClientController {
 
     @Operation(
             summary = "Создание клиента",
-            description = "Позволяет регистрировать клиента"
+            description = "Позволяет регистрировать нового клиента"
     )
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -87,53 +87,4 @@ public class ClientController {
         clientRepository.deleteById(id);
         return "Client "+id+" success deleted";
     }
-
-//    private ClientRepository clientRepository;
-//    @Autowired
-//    public ClientController(ClientRepository clientRepository){
-//        this.clientRepository=clientRepository;
-//    }
-//
-//    @PostMapping(value = "/clients")
-//    public ResponseEntity<?> create(@RequestBody Client client){
-//        clientRepository.save(client);
-//        return new ResponseEntity<>(HttpStatus.CREATED);
-//    }
-//
-//    @GetMapping(value = "/clients")
-//    public ResponseEntity<List<Client>> read(){
-//         final List<Client> clients= (List<Client>) clientRepository.findAll();
-//         return clients!=null && !clients.isEmpty()
-//                 ? new ResponseEntity<>(clients,HttpStatus.OK)
-//                 :new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
-//
-//    @GetMapping(value = "/clients/{id}")
-//    public ResponseEntity<Client> read(@PathVariable(name="id") int id){
-//        final Client client=clientRepository.findById(id);
-//        return client!=null
-//                ? new ResponseEntity<>(client,HttpStatus.OK)
-//                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
-//
-//    @PutMapping(value = "/clients/{id}")
-//    public ResponseEntity<Client> update(@PathVariable(name="id") int id, @RequestBody Client client){
-//        final Client updatebleClient=clientRepository.findById(id);
-//        updatebleClient.setFio(client.getFio());
-//        updatebleClient.setEmail(client.getEmail());
-//        updatebleClient.setPhone(client.getPhone());
-//        clientRepository.save(updatebleClient);
-//        return updatebleClient!=null
-//                ? new ResponseEntity<>(updatebleClient,HttpStatus.OK)
-//                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
-//    }
-//
-//    @DeleteMapping(value = "/clients/delete/{id}")
-//    public ResponseEntity<?> delete(@PathVariable(name="id") long id){
-//        final Client deletebleClient=clientRepository.findById(id);
-//        clientRepository.delete(deletebleClient);
-//        return deletebleClient!=null
-//                ? new ResponseEntity<>(HttpStatus.OK)
-//                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
 }
