@@ -48,3 +48,9 @@ on delete cascade on update cascade,
 Foreign key(product_id) references "product"(id)
 on delete cascade on update cascade
 );
+
+--changeset your.name:6
+CREATE TYPE order_status AS ENUM('Готов','Завершен','Отменен','В обработке');
+ALTER TABLE "order"
+ADD COLUMN status order_status NOT NULL DEFAULT 'В обработке';
+UPDATE "order" SET status='В обработке';

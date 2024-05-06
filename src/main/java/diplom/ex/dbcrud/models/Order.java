@@ -24,6 +24,8 @@ public class Order {
     private PickPoint pickPoint;
     private LocalDate date;
     private BigDecimal sum;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
     @ManyToOne(targetEntity = Client.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Client client;

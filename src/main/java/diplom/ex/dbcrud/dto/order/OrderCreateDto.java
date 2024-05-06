@@ -3,8 +3,11 @@ package diplom.ex.dbcrud.dto.order;
 import diplom.ex.dbcrud.dto.client.ClientDto;
 import diplom.ex.dbcrud.dto.pickpoint.PickPointDto;
 import diplom.ex.dbcrud.models.Client;
+import diplom.ex.dbcrud.models.OrderStatus;
 import diplom.ex.dbcrud.models.PickPoint;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,4 +28,7 @@ public class OrderCreateDto {
     private BigDecimal sum;
     @Schema(description = "Клиент")
     private Client client;
+    @Schema(description = "Статус")
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
 }

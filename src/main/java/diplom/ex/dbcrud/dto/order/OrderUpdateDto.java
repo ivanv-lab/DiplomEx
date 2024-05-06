@@ -7,8 +7,11 @@ import diplom.ex.dbcrud.dto.orderitem.OrderItemUpdateDto;
 import diplom.ex.dbcrud.dto.pickpoint.PickPointDto;
 import diplom.ex.dbcrud.models.Client;
 import diplom.ex.dbcrud.models.OrderItem;
+import diplom.ex.dbcrud.models.OrderStatus;
 import diplom.ex.dbcrud.models.PickPoint;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,6 +30,9 @@ public class OrderUpdateDto {
     //private LocalDate date;
     @Schema(description = "Сумма")
     private BigDecimal sum;
+    @Schema(description = "Статус")
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
     @Schema(description = "Пункты заказа")
     private List<OrderItem> item;
 //    @Schema(description = "")
