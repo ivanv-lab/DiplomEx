@@ -47,4 +47,15 @@ public class Order {
         );
     }
 
+    public List<OrderItem> getItem() {
+        return item;
+    }
+
+    public void setItem(List<OrderItem> item) {
+        this.item = item;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }

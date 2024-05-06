@@ -6,9 +6,15 @@ import diplom.ex.dbcrud.dto.client.ClientUpdateDto;
 import diplom.ex.dbcrud.dto.order.OrderCreateDto;
 import diplom.ex.dbcrud.dto.order.OrderDto;
 import diplom.ex.dbcrud.dto.order.OrderUpdateDto;
+import diplom.ex.dbcrud.dto.orderitem.OrderItemCreateDto;
+import diplom.ex.dbcrud.dto.orderitem.OrderItemDto;
+import diplom.ex.dbcrud.dto.orderitem.OrderItemUpdateDto;
+import diplom.ex.dbcrud.mapper.OrderItemMapper;
 import diplom.ex.dbcrud.mapper.OrderMapper;
 import diplom.ex.dbcrud.models.Order;
+import diplom.ex.dbcrud.models.OrderItem;
 import diplom.ex.dbcrud.models.PickPoint;
+import diplom.ex.dbcrud.repositories.OrderItemRepository;
 import diplom.ex.dbcrud.repositories.OrderRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -25,6 +31,10 @@ import java.util.List;
 public class OrderController {
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private OrderItemMapper itemMapper;
+    @Autowired
+    private OrderItemRepository itemRepository;
     @Autowired
     private OrderMapper orderMapper;
 
@@ -60,9 +70,11 @@ public class OrderController {
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public OrderDto update(@RequestBody OrderUpdateDto orderData, @PathVariable Long id){
-        var order=orderRepository.findById(id).get();
+        Order order=orderRepository.findById(id).get();
         orderMapper.update(orderData,order);
+        itemRepository.saveAll(orderData.getItem());
         orderRepository.save(order);
+        //itemRepository.saveAll(order.getItem());
         var orderDto=orderMapper.map(order);
         return orderDto;
     }
@@ -89,4 +101,40 @@ public class OrderController {
         orderRepository.deleteById(id);
         return "Order "+id+" success deleted";
     }
+
+//    @Operation(
+//            summary = "Добавление пункта заказа в данный заказ",
+//            description = "Позволяет добавить новый пункт(number, price, product) в указанный заказ(id)"
+//    )
+//    @PostMapping("{id}/additem")
+//    @ResponseStatus(HttpStatus.OK)
+//    public OrderDto createItem(@PathVariable long id, @RequestBody OrderItemCreateDto item){
+//        Order order=orderRepository.findById(id).get();
+//        if(order!=null){
+//            item.setOrder(orderMapper.map(order));
+//            var itemDto=itemMapper.map(item);
+//            itemRepository.save(itemDto);
+//            var orderDto=orderMapper.map(order);
+//            return orderDto;
+//        }
+//        return null;
+//    }
+//
+//    @Operation(
+//            summary = "Удаление данного пункта закза из данного заказа",
+//            description = "Позволяет удалить указанный пункт заказа(itemId) из указанного заказа(orderId)"
+//    )
+//    @DeleteMapping("{orderId}/deleteitem/{itemId}")
+//    @ResponseStatus(HttpStatus.OK)
+//    public OrderDto deleteItem(@PathVariable long orderId, @PathVariable long itemId){
+//        Order order=orderRepository.findById(orderId).get();
+//        if(order!=null){
+//            var item=itemRepository.findById(itemId);
+//            if(item!=null){
+//                itemRepository.delete(item);
+//                return orderMapper.map(order);
+//            }
+//        }
+//        return null;
+//    }
 }

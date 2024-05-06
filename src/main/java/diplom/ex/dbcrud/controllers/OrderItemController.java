@@ -6,6 +6,7 @@ import diplom.ex.dbcrud.dto.orderitem.OrderItemUpdateDto;
 import diplom.ex.dbcrud.mapper.OrderItemMapper;
 import diplom.ex.dbcrud.models.OrderItem;
 import diplom.ex.dbcrud.repositories.OrderItemRepository;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Hidden
 @Tag(name="OrderItem Controller", description = "CRUD OrderItem Controller")
 @RestController
 @RequestMapping("/orderitems")
