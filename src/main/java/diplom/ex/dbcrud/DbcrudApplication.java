@@ -26,7 +26,7 @@ public class DbcrudApplication {
 
 	@Bean
 	public CommandLineRunner demo(ClientRepository clientRepository, PickPointRepository pickPointRepository,
-								  ProductRepository productRepository, OrderRepository orderRepository, OrderItemRepository orderItemRepository){
+								  ProductRepository productRepository, OrderRepository orderRepository, OrderItemRepository orderItemRepository, StatusRepository statusRepository){
 		return (args -> {
 
 		});
