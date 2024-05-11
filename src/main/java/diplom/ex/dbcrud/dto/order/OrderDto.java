@@ -3,10 +3,8 @@ package diplom.ex.dbcrud.dto.order;
 import diplom.ex.dbcrud.dto.client.ClientDto;
 import diplom.ex.dbcrud.dto.orderitem.OrderItemDto;
 import diplom.ex.dbcrud.dto.pickpoint.PickPointDto;
-import diplom.ex.dbcrud.models.Client;
-import diplom.ex.dbcrud.models.OrderItem;
-import diplom.ex.dbcrud.models.OrderStatus;
-import diplom.ex.dbcrud.models.PickPoint;
+import diplom.ex.dbcrud.dto.status.StatusDto;
+import diplom.ex.dbcrud.models.Status;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -25,6 +23,8 @@ import java.util.List;
 public class OrderDto {
     @Schema(description = "Идентификатор")
     private Long id;
+    @Schema(description = "Статус заказа")
+    private StatusDto status;
     @Schema(description = "Пункт выдачи")
     private PickPointDto pickPoint;
     @Schema(description = "Дата")
@@ -33,9 +33,6 @@ public class OrderDto {
     private BigDecimal sum;
     @Schema(description = "Клиент")
     private ClientDto client;
-    @Schema(description = "Статус")
-    @Enumerated(EnumType.STRING)
-    private OrderStatus status;
     @Schema(description = "Пункты заказа")
     private List<OrderItemDto> item;
 }

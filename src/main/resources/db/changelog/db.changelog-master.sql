@@ -50,7 +50,21 @@ on delete cascade on update cascade
 );
 
 --changeset your.name:6
-CREATE TYPE order_status AS ENUM('Готов','Завершен','Отменен','В обработке');
+CREATE TABLE "order_status"(
+id serial primary key NOT NULL,
+name character varying(255)
+);
+
+--changeset your.name:7
+INSERT INTO "order_status"(id,name) VALUES
+(1,'Готов'),(2,'Завершен'),(3,'Ожидается'),(4,'Отменен');
+
+--changeset your.name:8
 ALTER TABLE "order"
-ADD COLUMN status order_status NOT NULL DEFAULT 'В обработке';
-UPDATE "order" SET status='В обработке';
+ADD "status_id" integer NOT NULL DEFAULT '1'
+
+--changeset your.name:9
+ALTER TABLE "order"
+ADD CONSTRAINT fk_status
+FOREIGN key(status_id) references "order_status"(id);
+

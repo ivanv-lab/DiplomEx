@@ -24,8 +24,9 @@ public class Order {
     private PickPoint pickPoint;
     private LocalDate date;
     private BigDecimal sum;
-    @Enumerated(EnumType.STRING)
-    private OrderStatus status;
+    @ManyToOne(targetEntity = Status.class,fetch = FetchType.EAGER)
+    @JoinColumn(name="status_id")
+    private Status status;
     @ManyToOne(targetEntity = Client.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Client client;
@@ -33,18 +34,19 @@ public class Order {
     private List<OrderItem> item=new ArrayList<>();
     public Order(){}
 
-    public Order(PickPoint pickPoint, LocalDate date, BigDecimal sum, Client client,
+    public Order(PickPoint pickPoint, LocalDate date, BigDecimal sum, Client client, Status status,
                  OrderItem item) {
         this.pickPoint=pickPoint;
         this.date = date;
         this.sum = sum;
+        this.status=status;
         this.client=client;
         this.item.add(item);
     }
 
     public String toString(){
         return String.format(
-                "Order[id="+id+", location="+pickPoint+
+                "Order[id="+id+", location="+pickPoint+", status="+status+
                         ", date="+date+", sum="+sum+", user="+client+", item="+item+"]"
         );
     }
