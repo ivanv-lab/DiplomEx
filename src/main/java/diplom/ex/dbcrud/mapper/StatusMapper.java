@@ -9,4 +9,5 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface StatusMapper {
     StatusDto map(Status model);
+    Status map(StatusDto dto);
 }

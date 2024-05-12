@@ -1,7 +1,9 @@
 package diplom.ex.dbcrud.dto.order;
 
+import diplom.ex.dbcrud.dto.status.StatusDto;
 import diplom.ex.dbcrud.models.Client;
 import diplom.ex.dbcrud.models.PickPoint;
+import diplom.ex.dbcrud.models.Status;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -19,6 +21,8 @@ import java.time.LocalDate;
 public class OrderCreateDto {
     @Schema(description = "Пункт выдачи")
     private PickPoint  pickPoint;
+    @Schema(description = "Статус заказа")
+    private StatusDto status;
     @Schema(description = "Дата создания")
     private LocalDate date;
     @Schema(description = "Сумма")

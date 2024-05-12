@@ -68,3 +68,4 @@ ALTER TABLE "order"
 ADD CONSTRAINT fk_status
 FOREIGN key(status_id) references "order_status"(id);
 
+
