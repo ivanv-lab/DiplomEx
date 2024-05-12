@@ -20,18 +20,20 @@ public class Client {
     private String fio;
     private String email;
     private String phone;
+    private boolean deleted;
 
     public Client(){}
-    public Client(String fio, String email, String phone) {
+    public Client(String fio, String email, String phone, boolean deleted) {
         this.fio = fio;
         this.email = email;
         this.phone = phone;
+        this.deleted=deleted;
     }
 
     public String toString(){
         return String.format(
                 "Client[id="+id+", FIO="+fio+", email="+email+
-                        ", phone="+phone+"]"
+                        ", phone="+phone+", deleted="+deleted+"]"
         );
     }
 }

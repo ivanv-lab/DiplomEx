@@ -52,6 +52,18 @@ public class OrderController {
     }
 
     @Operation(
+            summary = "Поиск заказов по статусу и пункту выдачи",
+            description = "Позволяет найти все заказы с определенным статусом и пунктом выдачи"
+    )
+    @GetMapping("/search/{statusId}/{pickPointId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<OrderDto> getAllByStatusAndPickPoint(@PathVariable Long statusId, @PathVariable Long pickPointId){
+        var order=orderRepository.findByStatusAndPickPoint(statusId, pickPointId);
+        var orderDto=orderMapper.all((List)order);
+        return orderDto;
+    }
+
+    @Operation(
             summary = "Получение конкретного заказа",
             description = "Позволяет вывести нужный заказ"
     )

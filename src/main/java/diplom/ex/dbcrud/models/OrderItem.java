@@ -26,18 +26,20 @@ public class OrderItem {
     @ManyToOne(targetEntity = Product.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
     private Product product;
+    private boolean deleted;
     public OrderItem(){}
 
-    public OrderItem(Order order,Product product, int number, BigDecimal price) {
+    public OrderItem(Order order,Product product, int number, BigDecimal price, boolean deleted) {
         this.order=order;
         this.product=product;
         this.number = number;
         this.price = price;
+        this.deleted=deleted;
     }
     public String toString(){
         return String.format(
                 "OrderItem[id="+id+", order="+order+", product="+
-                        product+", number="+number+", price="+price+"]"
+                        product+", number="+number+", price="+price+", deleted"+deleted+"]"
         );
     }
 }

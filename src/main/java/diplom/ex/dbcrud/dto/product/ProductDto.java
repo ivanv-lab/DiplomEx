@@ -20,4 +20,6 @@ public class ProductDto {
     private int number;
     @Schema(description = "Цена")
     private BigDecimal price;
+    @Schema(description = "Удален")
+    private boolean deleted;
 }

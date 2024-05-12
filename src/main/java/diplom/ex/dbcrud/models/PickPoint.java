@@ -21,14 +21,16 @@ public class PickPoint {
     private String address;
     @OneToMany(mappedBy = "pickPoint")
     private List<Order> order=new ArrayList<>();
+    private boolean deleted;
     public PickPoint(){}
-    public PickPoint(String name, String address) {
+    public PickPoint(String name, String address, boolean deleted) {
         this.name = name;
         this.address = address;
+        this.deleted=deleted;
     }
     public String toString(){
         return String.format(
-                "PickPoint[id="+id+", name="+name+", address="+address+"]"
+                "PickPoint[id="+id+", name="+name+", address="+address+", deleted="+deleted+"]"
         );
     }
 }

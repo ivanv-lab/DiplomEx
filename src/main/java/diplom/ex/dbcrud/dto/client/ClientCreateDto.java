@@ -16,4 +16,6 @@ public class ClientCreateDto {
     private String email;
     @Schema(description = "Номер телефона")
     private String phone;
+    @Schema(description = "Удален")
+    private boolean deleted;
 }

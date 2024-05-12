@@ -68,4 +68,21 @@ ALTER TABLE "order"
 ADD CONSTRAINT fk_status
 FOREIGN key(status_id) references "order_status"(id);
 
+--changeset your.name:11
+ALTER TABLE "client"
+ADD "deleted" boolean NOT NULL DEFAULT '0';
+
+--changeset your.name:12
+ALTER TABLE "order_list"
+ADD "deleted" boolean NOT NULL DEFAULT '0';
+
+--changeset your.name:13
+ALTER TABLE "pick_point"
+ADD "deleted" boolean NOT NULL DEFAULT '0';
+
+--changeset your.name:14
+ALTER TABLE "product"
+ADD "deleted" boolean NOT NULL DEFAULT '0';
+
+
 

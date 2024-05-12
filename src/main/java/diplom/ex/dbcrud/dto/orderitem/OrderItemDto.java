@@ -24,5 +24,6 @@ public class OrderItemDto {
     private BigDecimal price;
     @Schema(description = "Товар")
     private ProductDto product;
-
+    @Schema(description = "Удален")
+    private boolean deleted;
 }

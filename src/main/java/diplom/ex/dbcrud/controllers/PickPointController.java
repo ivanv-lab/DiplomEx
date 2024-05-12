@@ -77,16 +77,28 @@ public class PickPointController {
 //    }
 
     @Operation(
-            summary = "Вывод всех пунктов выдачи",
-            description = "Позволяет вывести все пункты выдачи"
+            summary = "Вывод всех не удаленных пунктов выдачи",
+            description = "Позволяет вывести все действующие пункты выдачи"
     )
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<PickPointDto> getAll(){
-        var points=pointRepository.findAll();
+        var points=pointRepository.findAllNotDeleted(false);
         var pointDto=pointMapper.all((List)points);
         return pointDto;
     }
+
+//    @Operation(
+//            summary = "Вывод всех не удаленных пунктов выдачи",
+//            description = "Позволяет вывести все действующие пункты выдачи"
+//    )
+//    @GetMapping
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<PickPointDto> getAllNotDeleted(){
+//        var points=pointRepository.findByDeletedIsFalse();
+//        var pointsDto=pointMapper.all((List)points);
+//        return pointsDto;
+//    }
 
     @Operation(
             summary = "Удаление конкретного пункта выдачи",

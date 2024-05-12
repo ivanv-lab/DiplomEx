@@ -80,7 +80,7 @@ public class ProductController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ProductDto> getAll(){
-        var products=productRepository.findAll();
+        var products=productRepository.findAllNotDeleted(false);
         var productDto=productMapper.all((List)products);
         return productDto;
     }
