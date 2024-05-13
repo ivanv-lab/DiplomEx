@@ -21,22 +21,22 @@ public class Product {
     private String name;
     private int number;
     private BigDecimal price;
-    private boolean deleted;
+    private String status;
     @Transient
     @OneToMany(mappedBy = "product")
     private List<OrderItem> orderItemList=new ArrayList<>();
     public Product(){}
-    public Product(String name, int number, BigDecimal price,boolean deleted) {
+    public Product(String name, int number, BigDecimal price,String status) {
         this.name = name;
         this.number = number;
         this.price = price;
-        this.deleted=deleted;
+        this.status=status;
     }
 
     public String toString(){
         return String.format(
                 "Product[id="+id+", name="+name+", number="+number+
-                        ", price="+price+", deleted="+deleted+"]"
+                        ", price="+price+", deleted="+status+"]"
         );
     }
 }

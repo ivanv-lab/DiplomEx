@@ -8,6 +8,7 @@ import diplom.ex.dbcrud.repositories.ProductRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -74,13 +75,13 @@ public class ProductController {
     }
 
     @Operation(
-            summary = "Вывод всех товаров",
-            description = "Позволяет вывести все товары в каталог"
+            summary = "Вывод товаров с выбранным статусом",
+            description = "Позволяет вывести товары с выбранным статусом(Удален, Нет статуса, Активен)"
     )
-    @GetMapping
+    @GetMapping("/status/{statusString}")
     @ResponseStatus(HttpStatus.OK)
-    public List<ProductDto> getAll(){
-        var products=productRepository.findAllNotDeleted(false);
+    public List<ProductDto> getAll(@Param("statusString") String status){
+        var products=productRepository.findAllNotDeleted(status);
         var productDto=productMapper.all((List)products);
         return productDto;
     }

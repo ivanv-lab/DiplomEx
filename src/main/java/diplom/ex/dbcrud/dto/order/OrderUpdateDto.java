@@ -19,8 +19,8 @@ import java.util.List;
 @Setter
 @Schema(description = "Сущность изменения заказа")
 public class OrderUpdateDto {
-    @Schema(description = "Статус заказа")
-    private StatusDto status;
+    @Schema(description = "Статус заказа (1-Готов, 2-Завершен, 3-Ожидается, 4-Отменен)")
+    private Status status;
     @Schema(description = "Пункт выдачи")
     private PickPoint pickPoint;
     //private LocalDate date;

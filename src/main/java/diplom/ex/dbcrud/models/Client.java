@@ -1,6 +1,7 @@
 package diplom.ex.dbcrud.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.Constraint;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,20 +21,20 @@ public class Client {
     private String fio;
     private String email;
     private String phone;
-    private boolean deleted;
+    private String status;
 
     public Client(){}
-    public Client(String fio, String email, String phone, boolean deleted) {
+    public Client(String fio, String email, String phone, String status) {
         this.fio = fio;
         this.email = email;
         this.phone = phone;
-        this.deleted=deleted;
+        this.status=status;
     }
 
     public String toString(){
         return String.format(
                 "Client[id="+id+", FIO="+fio+", email="+email+
-                        ", phone="+phone+", deleted="+deleted+"]"
+                        ", phone="+phone+", deleted="+status+"]"
         );
     }
 }

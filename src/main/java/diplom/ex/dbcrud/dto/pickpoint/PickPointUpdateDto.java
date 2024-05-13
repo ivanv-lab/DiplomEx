@@ -14,6 +14,6 @@ public class PickPointUpdateDto {
     private String name;
     @Schema(description = "Адрес")
     private String address;
-    @Schema(description = "Удален")
-    private boolean deleted;
+    @Schema(description = "Статус (Deleted, No status, Active)")
+    private String status;
 }

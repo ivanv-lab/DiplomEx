@@ -11,6 +11,6 @@ import org.springframework.data.repository.query.Param;
 public interface ClientRepository extends CrudRepository<Client, Long> {
     List<Client>findByFioContainingIgnoreCase(String fio);
     Client findById(long id);
-//    @Query("select e from Client e where e.deleted=:deleted")
-//    List<Client> findAllNotDeleted(@Param("deleted") boolean deleted);
+    @Query("select e from Client e where e.status=:status")
+    List<Client> findAllNotDeleted(@Param("status") String status);
 }

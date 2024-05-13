@@ -18,6 +18,6 @@ public class ProductCreateDto {
     private int number;
     @Schema(description = "Цена")
     private BigDecimal price;
-    @Schema(description = "Удален")
-    private boolean deleted;
+    @Schema(description = "Статус (Deleted, No status, Active)")
+    private String status;
 }

@@ -10,6 +10,6 @@ import java.util.List;
 public interface PickPointRepository extends CrudRepository<PickPoint, Long> {
     List<PickPoint>  findByAddressContainingIgnoreCase(String address);
     PickPoint findById(long id);
-    @Query("select e from PickPoint e where e.deleted=:deleted")
-    List<PickPoint> findAllNotDeleted(@Param("deleted") boolean deleted);
+    @Query("select e from PickPoint e where e.status=:status")
+    List<PickPoint> findAllNotDeleted(@Param("status") String status);
 }

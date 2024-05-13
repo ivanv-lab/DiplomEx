@@ -23,7 +23,7 @@ import java.util.List;
 public class OrderDto {
     @Schema(description = "Идентификатор")
     private Long id;
-    @Schema(description = "Статус заказа")
+    @Schema(description = "Статус заказа (1-Готов, 2-Завершен, 3-Ожидается, 4-Отменен)")
     private StatusDto status;
     @Schema(description = "Пункт выдачи")
     private PickPointDto pickPoint;

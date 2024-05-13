@@ -11,6 +11,6 @@ import java.util.List;
 public interface OrderItemRepository extends CrudRepository<OrderItem, Long> {
     //List<OrderItem> findByOrderId(long orderId);
     OrderItem findById(long id);
-//    @Query("select e from OrderItem e where e.deleted=:deleted")
-//    List<OrderItem> findAllNotDeleted(@Param("deleted") boolean deleted);
+    @Query("select e from OrderItem e where e.status=:status")
+    List<OrderItem> findAllNotDeleted(@Param("status") String status);
 }

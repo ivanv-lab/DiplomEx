@@ -70,19 +70,18 @@ FOREIGN key(status_id) references "order_status"(id);
 
 --changeset your.name:11
 ALTER TABLE "client"
-ADD "deleted" boolean NOT NULL DEFAULT '0';
+ADD "status" character varying(255) CHECK(status='Deleted' OR status='No status' OR status='Active');
 
 --changeset your.name:12
 ALTER TABLE "order_list"
-ADD "deleted" boolean NOT NULL DEFAULT '0';
+ADD "status" character varying(255) CHECK(status='Deleted' OR status='No status' OR status='Active');
 
 --changeset your.name:13
 ALTER TABLE "pick_point"
-ADD "deleted" boolean NOT NULL DEFAULT '0';
+ADD "status" character varying(255) CHECK(status='Deleted' OR status='No status' OR status='Active');
 
 --changeset your.name:14
 ALTER TABLE "product"
-ADD "deleted" boolean NOT NULL DEFAULT '0';
-
+ADD "status" character varying(255) CHECK(status='Deleted' OR status='No status' OR status='Active');
 
 

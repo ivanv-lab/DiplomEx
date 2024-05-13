@@ -13,6 +13,7 @@ import diplom.ex.dbcrud.repositories.PickPointRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -77,13 +78,13 @@ public class PickPointController {
 //    }
 
     @Operation(
-            summary = "Вывод всех не удаленных пунктов выдачи",
-            description = "Позволяет вывести все действующие пункты выдачи"
+            summary = "Вывод пунктов выдачи с выбранным статаусом",
+            description = "Позволяет вывести все пункты выдачи с выбранным статусом(Удален, Нет статуса, Активен)"
     )
-    @GetMapping
+    @GetMapping("/status/{statusString}")
     @ResponseStatus(HttpStatus.OK)
-    public List<PickPointDto> getAll(){
-        var points=pointRepository.findAllNotDeleted(false);
+    public List<PickPointDto> getAll(@Param("statusString") String status){
+        var points=pointRepository.findAllNotDeleted(status);
         var pointDto=pointMapper.all((List)points);
         return pointDto;
     }

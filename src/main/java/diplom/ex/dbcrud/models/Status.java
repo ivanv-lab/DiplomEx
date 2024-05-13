@@ -18,7 +18,4 @@ public class Status {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @Transient
-    @OneToMany(mappedBy = "status")
-    private List<Order> order=new ArrayList<>();
 }

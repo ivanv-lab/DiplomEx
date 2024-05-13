@@ -12,6 +12,6 @@ import java.math.BigDecimal;
 public interface ProductRepository extends CrudRepository<Product, Long> {
     List<Product> findByNameContainingIgnoreCase(String name);
     Product findById(long id);
-    @Query("select e from Product e where e.deleted=:deleted")
-    List<Product> findAllNotDeleted(@Param("deleted") boolean deleted);
+    @Query("select e from Product e where e.status=:status")
+    List<Product> findAllNotDeleted(@Param("status") String status);
 }
