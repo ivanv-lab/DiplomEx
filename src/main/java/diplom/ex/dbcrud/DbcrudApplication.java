@@ -11,10 +11,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@EnableWebSecurity
 @SpringBootApplication
 public class DbcrudApplication {
 	public static final Logger log=
